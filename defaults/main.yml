@@ -1,0 +1,15 @@
+# types: docker, docker-compose
+pw_installation_type: docker
+
+pw_container_name: pw
+pw_image: 'tinyops/pw:1.0.0'
+pw_port_mapping: '8080:8080'
+
+#------------------------------------
+# type: docker
+#------------------------------------
+
+#------------------------------------
+# type: docker-compose
+#------------------------------------
+# pw_path: /opt/pw

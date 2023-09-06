@@ -1,0 +1,8 @@
+- name: Start pw container
+  community.docker.docker_container:
+    name: "{{ pw_container_name }}"
+    image: "{{ pw_image }}"
+    state: started
+    restart: true
+    posed_ports:
+      - "{{ pw_port_mapping }}"

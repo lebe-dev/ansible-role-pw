@@ -1,0 +1,11 @@
+- name: Install pw in stateless mode
+  ansible.builtin.import_tasks: docker-stateless.yml
+  when: pw_installation_type == 'docker'
+  tags:
+    - pw
+
+- name: Install pw with docker-compose
+  ansible.builtin.import_tasks: docker-compose.yml
+  when: pw_installation_type == 'docker-compose'
+  tags:
+    - pw
