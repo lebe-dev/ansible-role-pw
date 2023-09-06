@@ -4,5 +4,5 @@
     image: "{{ pw_image }}"
     state: started
     restart: true
-    posed_ports:
+    ports:
       - "{{ pw_port_mapping }}"
