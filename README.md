@@ -1,8 +1,10 @@
 # Ansible role for pw
 
-Status: Work in progress
+Current implementation support only stateless mode:
 
-Current implementation support only stateless mode.
+```shell
+docker run -d --rm --name pw -p PORT:8080 tinyops/pw:1.0.0
+```
 
 ## Variables
 
@@ -28,3 +30,7 @@ pw_port_mapping: '8080:8080'
 ```yaml
 ansible-playbook -b -i your-inventory playbooks/someserver.yml
 ```
+
+## Roadmap
+
+1. Installation with docker-compose.yml
