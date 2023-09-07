@@ -1,1 +1,28 @@
-# WIP
+- name: Create home dir
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: '0700'
+  with_items: "{{ pw_instances }}"
+  
+- name: Create docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ item.path }}/docker-compose.yml"
+    mode: "0700"
+  notify: restart pw
+  with_items: "{{ pw_instances }}"
+
+- name: Create config [1/2]
+  ansible.builtin.file:
+    path: "{{ item.path }}/pw.yml"
+    state: touch
+  with_items: "{{ pw_instances }}"
+
+- name: Create config [2/2]
+  ansible.builtin.copy:
+    dest: "{{ item.path }}/pw.yml"
+    content: "{{ item.config }}"
+    mode: "0750"
+  notify: restart pw
+  with_items: "{{ pw_instances }}"

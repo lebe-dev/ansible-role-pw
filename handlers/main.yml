@@ -1,0 +1,7 @@
+- name: restart pw
+  ansible.builtin.shell: |
+    cd {{ item.path }}
+    docker-compose down
+    docker-compose pull
+    docker-compose up -d
+  with_items: "{{ pw_instances }}"
