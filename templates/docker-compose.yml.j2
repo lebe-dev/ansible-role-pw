@@ -10,3 +10,9 @@ services:
       #- ./locale.d:/app/locale.d
     ports:
       - "{{ item.port_mapping }}"
+
+  cache:
+    container_name: {{ item.container_name }}-cache
+    image: redis:7.2.1-alpine3.18
+    restart: always
+    command: 'redis-server --save "" --appendonly no --maxmemory {{ item.redis_max_memory }}'
