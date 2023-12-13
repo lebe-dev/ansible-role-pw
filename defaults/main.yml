@@ -1,7 +1,7 @@
 pw_instances:
   - type: docker-compose
     path: /opt/pw
-    image: 'tinyops/pw:1.1.0'
+    image: 'tinyops/pw:1.2.3'
     port_mapping: '8080:8080'
     redis_max_memory: '128mb'
 
