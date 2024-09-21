@@ -5,14 +5,18 @@ services:
     container_name: {{ item.container_name }}
     image: {{ item.image }}
     restart: always
-    volumes:
-      - ./pw.yml:/app/pw.yml
-      #- ./locale.d:/app/locale.d
+    environment:
+      PW_LISTEN: '0.0.0.0:8080'
+      PW_LOG_LEVEL: '{{ item.log_level }}'
+      PW_MESSAGE_MAX_LENGTH: '{{ item.message_max_length }}'
+      PW_ENCRYPTED_MESSAGE_MAX_LENGTH: '{{ item.encrypted_message_max_length }}'
+      PW_LOCALE_ID: '{{ item.locale_id }}'
+      PW_REDIS_URL: 'redis://cache:6379/'
     ports:
       - "{{ item.port_mapping }}"
 
   cache:
     container_name: {{ item.container_name }}-cache
-    image: redis:7.2.1-alpine3.18
+    image: {{ item.redis_image }}
     restart: always
     command: 'redis-server --save "" --appendonly no --maxmemory {{ item.redis_max_memory }}'

@@ -1,20 +1,16 @@
 pw_instances:
   - type: docker-compose
     path: /opt/pw
-    image: 'tinyops/pw:1.1.0'
+    image: 'tinyops/pw:1.4.0'
     port_mapping: '8080:8080'
     redis_max_memory: '128mb'
 
     container_name: pw
 
-    config: |
-      port: 8080
+    log_level: info
 
-      log-level: debug
+    message_max_length: '512'
+    encrypted_message_max_length: '1024'
+    locale_id: 'ru'
 
-      message-max-length: 100
-      encrypted-message-max-length: 500
-
-      locale-id: 'en'
-
-      redis-url: 'redis://cache:6379'
+    redis_image: 'redis/7.4.0-alpine3.20'
