@@ -12,17 +12,3 @@
     mode: "0700"
   notify: restart pw
   with_items: "{{ pw_instances }}"
-
-- name: Create config [1/2]
-  ansible.builtin.file:
-    path: "{{ item.path }}/pw.yml"
-    state: touch
-  with_items: "{{ pw_instances }}"
-
-- name: Create config [2/2]
-  ansible.builtin.copy:
-    dest: "{{ item.path }}/pw.yml"
-    content: "{{ item.config }}"
-    mode: "0755"
-  notify: restart pw
-  with_items: "{{ pw_instances }}"
