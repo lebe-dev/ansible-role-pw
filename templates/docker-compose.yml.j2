@@ -10,7 +10,6 @@ services:
       PW_LOG_LEVEL: '{{ item.log_level }}'
       PW_MESSAGE_MAX_LENGTH: '{{ item.message_max_length }}'
       PW_ENCRYPTED_MESSAGE_MAX_LENGTH: '{{ item.encrypted_message_max_length }}'
-      PW_LOCALE_ID: '{{ item.locale_id }}'
       PW_REDIS_URL: 'redis://cache:6379/'
     ports:
       - "{{ item.port_mapping }}"
